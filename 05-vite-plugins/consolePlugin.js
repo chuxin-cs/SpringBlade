@@ -1,4 +1,5 @@
 import path from "path";
+import gogo from "gogocode";
 
 function resolveAlias(alias) {
   const resolve = (p) => path.resolve(__dirname, p);
@@ -9,8 +10,7 @@ function resolveAlias(alias) {
   }
   return result;
 }
-
-export default function consolePlugin(alias) {
+function consolePlugin(alias) {
   return {
     /**
      * 插件名称
@@ -47,10 +47,20 @@ export default function consolePlugin(alias) {
     },
 
     transform(src, id) {
+      console.log(id);
       if (id == "G:/chuxin/chuxin-cs/chuxin-demo/05-vite-plugins/src/main.js") {
-        console.log(src);
+        return {
+          code: gogo(src)
+            .find("console.log()")
+            .remove()
+            .find("console.error()")
+            .remove()
+            .generate(),
+          map: null, // 如果可行将提供 source map
+        };
       }
-      console.log(id, "===");
+      // console.log(src, "gogo");
     },
   };
 }
+export default consolePlugin;
