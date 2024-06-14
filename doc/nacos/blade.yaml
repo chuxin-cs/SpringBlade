@@ -82,9 +82,9 @@ swagger:
 blade:
   token:
     #使用 blade-auth服务 @org.springblade.test.SignKeyGenerator 获取
-    sign-key: 请配置32位签名提高安全性
+    sign-key: OAZNU1yGn7Ujiztuaxrda8dtNglPWS8f
     #使用 blade-auth服务 @org.springblade.test.AesKeyGenerator 获取
-    aes-key: 请配置Aes的密钥
+    aes-key: csBoi3GUKjJCatRPLBA6XnC0sG3O9Nxo
   xss:
     enabled: true
     skip-url:
