@@ -5,6 +5,7 @@ import {
   // createBrowserRouter,// history 模式
   RouterProvider, //
   Link, // 路由跳转
+  Outlet, // 路由映射  相当于 vue-router 中的 router-view
 } from "react-router-dom";
 
 interface ILazyImportComponent {
@@ -43,6 +44,24 @@ function Router() {
           lazyChildren={lazy(() => import("@/pages/Login/index.tsx"))}
         />
       ),
+    },
+    {
+      path: "/chuxin",
+      element: (
+        <>
+          <Outlet />
+        </>
+      ),
+      children: [
+        {
+          path: "a",
+          element: <>a</>,
+        },
+        {
+          path: "b",
+          element: <>b</>,
+        },
+      ],
     },
   ]);
 
