@@ -2,14 +2,19 @@ import { Menu } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SettingOutlined } from "@ant-design/icons";
+import { useTransition } from "react";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
 export default function LayoutMenu() {
   const navigate = useNavigate();
+  const [isPending, startTransition] = useTransition();
+  console.log(isPending, "isPending");
 
   const onClick: MenuProps["onClick"] = (e) => {
-    navigate(`/hooks/${e.key}`);
+    startTransition(() => {
+      navigate(`/hooks/${e.key}`);
+    });
   };
 
   const items: MenuItem[] = [
